@@ -12,6 +12,7 @@ import Test from './src/screens/Test';
 import Test2 from './src/screens/Test2';
 import Diary from './src/screens/Diary';
 import NewDiary from './src/screens/NewDiary';
+import Infomation from './src/screens/Information';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,7 +27,7 @@ export function BottomTabs() {
 
 	return (
 		<Tab.Navigator>
-			<Tab.Screen name="Test" component={Test} options={{
+			<Tab.Screen name="Test2" component={Test2} options={{
 				tabBarIcon: () => (
 					<SimpleLineIcons name="settings" size={24} color="black" />
 				)
@@ -40,7 +41,7 @@ export function BottomTabs() {
 					</TouchableOpacity>
 				),
 			}} />
-			<Tab.Screen name="Test2" component={Test2} options={{
+			<Tab.Screen name="Info" component={Infomation} options={{
 				tabBarIcon: () => (
 					<SimpleLineIcons name="settings" size={24} color="black" />
 				),
