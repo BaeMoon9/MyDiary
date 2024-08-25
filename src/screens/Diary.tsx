@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { DiaryData } from '../datas/exampledata';
 
 
 
@@ -21,6 +22,14 @@ export default function Diary() {
 			<ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
 				<Text>DIARY</Text>
 				<StatusBar style="auto" />
+				<View>
+					{DiaryData.map((diary, idx) => (
+						<TouchableOpacity style={styles.diaries}>
+							<Text>{diary.title}</Text>
+							<Text>{diary.date}</Text>
+						</TouchableOpacity>
+					))}
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	)
@@ -36,5 +45,15 @@ const styles = StyleSheet.create({
 	},
 	scrollView: {
 
+	},
+	diaries: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginVertical: 3,
+		width: Dimensions.get("screen").width * 0.9,
+		height: Dimensions.get("screen").height * 0.05,
+		borderWidth: 1,
+		paddingHorizontal: 5,
 	}
 });

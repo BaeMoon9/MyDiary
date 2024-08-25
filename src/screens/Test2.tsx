@@ -2,6 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useDispatch, useSelector,  } from 'react-redux';
+import { changeName, changeName2 } from '../datas/store';
+import { RootState } from '../datas/store';
+import { Dispatch } from '@reduxjs/toolkit';
 
 export type RootStackParam = { //ts type지정
 	Test : undefined;
@@ -10,15 +14,22 @@ export type RootStackParam = { //ts type지정
 
 export default function Test2() {
 
-	const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+	//const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+	let reduxData = useSelector((state : RootState) => {return state})
+	let dispatch : Dispatch = useDispatch()
 
+	console.log(reduxData)
 	return(
 		<View style={styles.container}>
-      <Text>Test2 페이지 입니다.</Text>
+      <Text>{reduxData.newUser.user}</Text>
       <StatusBar style="auto" />
 			<Button 
-				title="Test로 이동"
-				onPress={() => navigation.navigate('Test')}
+				title="redux 이름 바꾸기"
+				onPress={() => {dispatch(changeName())}}
+			/>
+			<Button 
+				title="원래 이름으로 돌아가기"
+				onPress={() => {dispatch(changeName2())}}
 			/>
     </View>
 	)
