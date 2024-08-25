@@ -4,6 +4,10 @@ import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, Dimensions, T
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { DiaryData } from '../datas/exampledata';
+import { useDispatch, useSelector,  } from 'react-redux';
+import { RootState } from '../datas/store';
+import { Dispatch } from '@reduxjs/toolkit';
+
 
 
 
@@ -16,11 +20,13 @@ export type RootStackParam = { //ts type지정 이거도 사실 한곳에 묶어
 export default function Diary() {
 
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+	let reduxData = useSelector((state : RootState) => {return state})
+	let dispatch : Dispatch = useDispatch()
 
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-				<Text>DIARY</Text>
+				<Text>DIARY : {reduxData.diaryOwner.user}</Text>
 				<StatusBar style="auto" />
 				<View>
 					{DiaryData.map((diary, idx) => (
