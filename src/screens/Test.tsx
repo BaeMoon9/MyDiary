@@ -9,6 +9,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 export type RootStackParam = { //ts type지정
 	Test : undefined;
 	Test2 : undefined;
+	Diary : undefined
 }
 
 export default function Test() {
@@ -19,13 +20,10 @@ export default function Test() {
 		<View style={styles.container}>
       <Text>Test1페이지 입니다.</Text>
       <StatusBar style="auto" />
-			<Button 
-				title="Test2로 이동"
-				onPress={() => navigation.navigate('Test2')}
-			/>
     </View>
 	)
 }
+
 
 const styles = StyleSheet.create({
   container: {
