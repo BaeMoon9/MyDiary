@@ -17,7 +17,8 @@ export type RootStackParam = { //ts type지정
 
 export default function Test2() {
 
-	const [exData, setExData] = React.useState<[]>([]);
+	type exDB = {content : string, date : string, title : string} //db에서 usestate 타입 지정하기
+	const [exData, setExData] = React.useState<exDB>({content : '', date: '', title: ''});//usestate 타입을 exDB로 씌우기
 
 	useEffect(() => {
 		axios.get('http://localhost:3002/exDB').then((result) => {
@@ -28,8 +29,11 @@ export default function Test2() {
 		})
 	}, [])
 
-	console.log('exdata', exData.content)
-	//const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>();
+	console.log('exdata', exData.content) //hello world
+	console.log('전체', exData) //{"content": "hello world", "date": "", "id": 0, "title": "exampleDB"}
+	
+	//const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>(); 창 이동
+
 	let reduxData = useSelector((state : RootState) => {return state})
 	let dispatch : Dispatch = useDispatch()
 
@@ -47,7 +51,7 @@ export default function Test2() {
 				onPress={() => {dispatch(changeName2())}}
 			/>
 			<Text>
-				{exData.content}
+				{exData.content}, {exData.date}, {exData.title}
 			</Text>
     </View>
 	)
