@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useDispatch, useSelector,  } from 'react-redux';
-import { changeName, changeName2 } from '../datas/store';
+// import { changeName, changeName2 } from '../datas/store';
 import { RootState } from '../datas/store';
 import { Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -23,14 +23,14 @@ export default function Test2() {
 	useEffect(() => {
 		axios.get('http://localhost:3002/exDB').then((result) => {
 			setExData(result.data[0])
-			//console.log(result.data[0])
+			console.log(result.data)
 		}).catch(() => {
 			console.log('failed__')
 		})
 	}, [])
 
-	console.log('exdata', exData.content) //hello world
-	console.log('전체', exData) //{"content": "hello world", "date": "", "id": 0, "title": "exampleDB"}
+	//console.log('exdata', exData.content) //hello world
+	//console.log('전체', exData) //{"content": "hello world", "date": "", "id": 0, "title": "exampleDB"}
 	
 	//const navigation = useNavigation<NativeStackNavigationProp<RootStackParam>>(); 창 이동
 
@@ -40,16 +40,16 @@ export default function Test2() {
 	//console.log(reduxData)
 	return(
 		<View style={styles.container}>
-      <Text>{reduxData.newUser.user}</Text>
+      {/* <Text>{reduxData.newUser.user}</Text>
       <StatusBar style="auto" />
 			<Button 
 				title="redux 이름 바꾸기"
 				onPress={() => {dispatch(changeName())}}
-			/>
-			<Button 
+			/> */}
+			{/* <Button 
 				title="원래 이름으로 돌아가기"
 				onPress={() => {dispatch(changeName2())}}
-			/>
+			/> */}
 			<Text>
 				{exData.content}, {exData.date}, {exData.title}
 			</Text>

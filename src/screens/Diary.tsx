@@ -3,13 +3,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { DiaryData } from '../datas/exampledata';
+// import { DiaryData } from '../datas/exampledata';
 import { useDispatch, useSelector,  } from 'react-redux';
-import { RootState } from '../datas/store';
+import { importDiary, RootState, AppDispatch } from '../datas/store';
 import { Dispatch } from '@reduxjs/toolkit';
-
-
-
 
 export type RootStackParam = { //ts type지정 이거도 사실 한곳에 묶어두었으면 좋았을거같다.
 	Test: undefined;
@@ -23,18 +20,27 @@ export default function Diary() {
 	let reduxData = useSelector((state : RootState) => {return state})
 	let dispatch : Dispatch = useDispatch()
 
+	React.useEffect(() => {
+		
+	}, [dispatch])
+
+	console.log('db data', reduxData.diaryContent.contents)
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
 				<Text>DIARY : {reduxData.diaryOwner.user}</Text>
+				<Text>DIARY : {reduxData.diaryContent.contents}</Text>
 				<StatusBar style="auto" />
 				<View>
-					{DiaryData.map((diary, idx) => (
+					{/* {DiaryData.map((diary, idx) => (
 						<TouchableOpacity style={styles.diaries}>
 							<Text>{diary.title}</Text>
 							<Text>{diary.date}</Text>
 						</TouchableOpacity>
-					))}
+					))} */}
+					{
+						
+					}
 				</View>
 			</ScrollView>
 		</SafeAreaView>
